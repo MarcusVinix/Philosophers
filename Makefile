@@ -41,7 +41,10 @@ re: fclean all
 
 add: fclean
 	git add .
-	git commit -m "starting"
+	git commit -m "COMEÇANDO"
 
 push: add
 	git push
+
+teste:
+	./philo 100 123 154 123
