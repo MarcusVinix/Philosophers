@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:49:52 by mavinici          #+#    #+#             */
-/*   Updated: 2021/12/10 21:50:47 by mavinici         ###   ########.fr       */
+/*   Updated: 2021/12/11 16:44:25 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	add_value(t_main *main, int number, int sig)
 		main->ms_to_eat = number;
 	else if (sig == 4)
 		main->ms_to_sleep = number;
-	else
+	else if (sig == 5)
 		main->n_to_eat = number;
 }
 
@@ -43,10 +43,7 @@ int	parser_args(char **argv, t_main *main)
 
 	i = 0;
 	while (argv[++i])
-	{
-		printf("IS %i\n", (int)ft_atoi(argv[i]));
 		add_value(main, (int)ft_atoi(argv[i]), i);
-	}
 	if (!is_all_valid_arg(main))
 		return (FALSE);
 	return (TRUE);

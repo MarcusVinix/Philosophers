@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:21:13 by mavinici          #+#    #+#             */
-/*   Updated: 2021/12/10 22:53:46 by mavinici         ###   ########.fr       */
+/*   Updated: 2021/12/12 10:43:29 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,14 @@ int	init_philos(t_main *main)
 		main->philos[i].time = get_time();
 		main->philos[i].lfork = i;
 		main->philos[i].rfork = i + 1;
-		main->philos[i]->main = main;
+		main->philos[i].main = main;
 		if (i + 1 == main->n_philos)
 			main->philos[i].rfork = 0;
 		if (pthread_mutex_init(&main->forks[i], NULL))
 			return (FALSE);
 		if (pthread_mutex_init(&main->philos[i].mutex, NULL))
 			return (FALSE);
+		i++;
 	}
 	return (TRUE);
 }
@@ -46,21 +47,6 @@ int	start_structs(t_main *main)
 	return (TRUE);
 }
 
-int	prepare_dinner(t_main *main)
-{
-	int	i;
-
-	i = 0;
-	while (i < main->n_philos)
-	{
-		main->ms_start = get_time();
-		if (pthread_create(&main->philo[i].thread,
-			NULL, actions, &main->philo[i]))
-				return (FALSE);
-	}
-	return (TRUE);
-}
-
 int	main(int argc, char** argv)
 {
 	t_main	main;
@@ -69,12 +55,12 @@ int	main(int argc, char** argv)
 		return (1);
 	ft_bzero(&main, sizeof(t_main));
 	if (!parser_args(argv, &main))
-		return (1);
+		return (2);
 	if (!start_structs(&main))
-		return (1);
+		return (3);
 	if (!prepare_dinner(&main))
-		return (1);
-	printf("n_philo %i\n ms_to_die %i\n ms_to_eat %i\n ms_to_sleep %i\n", main.n_philos,
-			main.ms_to_die, main.ms_to_eat, main.ms_to_sleep);
+		return (4);
+	if (!start_dinner(&main))
+		return (5);
 	return (0);
 }

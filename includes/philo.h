@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:19:26 by mavinici          #+#    #+#             */
-/*   Updated: 2021/12/10 22:50:40 by mavinici         ###   ########.fr       */
+/*   Updated: 2021/12/11 16:34:01 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,20 @@
 # define THINK "is thinking"
 # define DIE "died"
 
+typedef struct s_main t_main;
+
 typedef struct s_philo
 {
 	int				id;
 	long int		time;
+	int				n_eat;
 	int				lfork;
 	int				rfork;
 	t_main			*main;
 	pthread_t		thread;
 	pthread_mutex_t	mutex;
 }				t_philo;
+
 typedef struct s_main
 {
 	int				n_philos;
@@ -62,6 +66,9 @@ int			ft_isdigit(int c);
 void		ft_bzero(void *s, size_t n);
 long int	get_time();
 void		print_status(t_philo *philo, char *action);
+int			must_die(t_philo *philo);
+int			eating(t_philo *philo);
+int			sleeping(t_philo *philo);
 
 
 //errors
@@ -70,6 +77,8 @@ int			check_errors(int argc, char **argv);
 //parser
 int			parser_args(char **argv, t_main *main);
 
-
+//dinner
+int			prepare_dinner(t_main *main);
+int			start_dinner(t_main *main);
 
 #endif

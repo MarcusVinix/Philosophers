@@ -6,7 +6,7 @@
 /*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 20:06:09 by mavinici          #+#    #+#             */
-/*   Updated: 2021/12/10 22:50:02 by mavinici         ###   ########.fr       */
+/*   Updated: 2021/12/11 13:53:02 by mavinici         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	print_status(t_philo *philo, char *action)
 	if (ft_strcmp(action, FORK) == 0)
 		printf("%s%ld %i %s%s\n", GRN, time, philo->id, FORK, RESET);
 	if (ft_strcmp(action, EAT) == 0)
-		printf("%s%ld %i %s%s\n", BLUE, time, philo->id, EAT, RESET);
+		printf("%s%ld %i %s%s\n", BLU, time, philo->id, EAT, RESET);
 	if (ft_strcmp(action, THINK) == 0)
 		printf("%s%ld %i %s%s\n", CYN, time, philo->id, THINK, RESET);
 	if (ft_strcmp(action, SLEEP) == 0)
