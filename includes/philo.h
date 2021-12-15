@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: marcus <marcus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:19:26 by mavinici          #+#    #+#             */
-/*   Updated: 2021/12/11 16:34:01 by mavinici         ###   ########.fr       */
+/*   Updated: 2021/12/14 23:44:12 by marcus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define THINK "is thinking"
 # define DIE "died"
 
-typedef struct s_main t_main;
+typedef struct s_main	t_main;
 
 typedef struct s_philo
 {
@@ -64,12 +64,13 @@ typedef struct s_main
 int			ft_atoi(const char *nptr);
 int			ft_isdigit(int c);
 void		ft_bzero(void *s, size_t n);
-long int	get_time();
+long int	get_time(void);
 void		print_status(t_philo *philo, char *action);
 int			must_die(t_philo *philo);
 int			eating(t_philo *philo);
 int			sleeping(t_philo *philo);
-
+int			free_all(t_main *main, int i);
+int			ft_strcmp(const char *s1, const char *s2);
 
 //errors
 int			check_errors(int argc, char **argv);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_dinner.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: marcus <marcus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 15:12:43 by mavinici          #+#    #+#             */
-/*   Updated: 2021/12/11 16:37:59 by mavinici         ###   ########.fr       */
+/*   Updated: 2021/12/14 23:41:51 by marcus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	unlock_forks(t_philo *philo)
 	pthread_mutex_unlock(&philo->main->forks[philo->lfork]);
 }
 
-int		sleeping(t_philo *philo)
+int	sleeping(t_philo *philo)
 {
 	long int	time;
 
@@ -41,14 +41,14 @@ int		sleeping(t_philo *philo)
 	return (TRUE);
 }
 
-int		must_die(t_philo *philo)
+int	must_die(t_philo *philo)
 {
 	int	i;
 	int	limit;
 
-	i = 0;
+	i = -1;
 	limit = 0;
-	while (i < philo->main->n_philos)
+	while (++i < philo->main->n_philos)
 	{
 		pthread_mutex_lock(&philo->main->philos[i].mutex);
 		if (get_time() - philo->main->philos[i].time >= philo->main->ms_to_die)
@@ -62,9 +62,8 @@ int		must_die(t_philo *philo)
 			limit++;
 		if (limit == philo->main->n_philos)
 			return (TRUE);
-		i++;
 	}
-	return (0);
+	return (FALSE);
 }
 
 int	eating(t_philo *philo)
@@ -90,4 +89,3 @@ int	eating(t_philo *philo)
 	philo->n_eat++;
 	return (TRUE);
 }
-

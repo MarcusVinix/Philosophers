@@ -8,12 +8,12 @@ PATH_OBJS = ./objs/
 NAME = philo
 
 CC = gcc
-CFLAGS = -Wextra -Werror -Wall -pthread -I ./includes/ -fsanitize=address
+CFLAGS = -Wextra -Werror -Wall -I ./includes/ -pthread -fsanitize=address
 RM = rm -rf
 
 SRC =	$(PATH_SRC)philo.c \
 		$(PATH_ERRORS)errors.c \
-		$(PATH_UTILS)utils.c $(PATH_UTILS)utils_dinner.c\
+		$(PATH_UTILS)utils.c $(PATH_UTILS)utils_dinner.c $(PATH_UTILS)more_utils.c\
 		$(PATH_PARSER)parser.c \
 		$(PATH_DINNER)dinner.c
 
@@ -22,7 +22,7 @@ OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(SRC))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
+	$(CC) -o $(NAME) $(CFLAGS) $(OBJS)  
 
 $(PATH_OBJS)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJS)
@@ -44,10 +44,10 @@ re: fclean all
 
 add: fclean
 	git add .
-	git commit -m "COMEÇANDO"
+	git commit -m "melhorando algumas partes"
 
 push: add
 	git push
 
 teste:
-	./philo 100 123 154 123
+	valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt ./philo 3 30 20 30

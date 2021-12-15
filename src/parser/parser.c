@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mavinici <mavinici@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: marcus <marcus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 21:49:52 by mavinici          #+#    #+#             */
-/*   Updated: 2021/12/11 16:44:25 by mavinici         ###   ########.fr       */
+/*   Updated: 2021/12/14 23:40:46 by marcus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	is_all_valid_arg(t_main *main)
 		return (FALSE);
 	if (main->ms_to_die == 0)
 		return (FALSE);
-	if (main->n_to_eat < 1)
+	if (main->n_to_eat != 0 && main->n_to_eat < 1)
 		return (FALSE);
 	return (TRUE);
 }
