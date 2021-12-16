@@ -44,7 +44,7 @@ re: fclean all
 
 add: fclean
 	git add .
-	git commit -m "melhorando algumas partes"
+	git commit -m "tratando loop quando tem só 1 philo"
 
 push: add
 	git push

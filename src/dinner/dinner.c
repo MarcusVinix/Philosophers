@@ -6,17 +6,29 @@
 /*   By: marcus <marcus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 13:36:03 by mavinici          #+#    #+#             */
-/*   Updated: 2021/12/14 23:40:29 by marcus           ###   ########.fr       */
+/*   Updated: 2021/12/15 22:45:08 by marcus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <philo.h>
+
+void	*kill_one_philo(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->main->forks[0]);
+	print_status(philo, FORK);
+	usleep(philo->main->ms_to_die * 1000);
+	pthread_mutex_unlock(&philo->main->forks[0]);
+	print_status(philo, DIE);
+	return (NULL);
+}
 
 void	*actions(void *param)
 {
 	t_philo		*philo;
 
 	philo = param;
+	if (philo->main->n_philos == 1)
+		return (kill_one_philo(philo));
 	if (!(philo->id % 2))
 		usleep(1000);
 	while (!must_die(philo))
