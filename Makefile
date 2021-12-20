@@ -8,7 +8,7 @@ PATH_OBJS = ./objs/
 NAME = philo
 
 CC = gcc
-CFLAGS = -Wextra -Werror -Wall -I ./includes/ -pthread -fsanitize=address
+CFLAGS = -Wextra -Werror -Wall -I ./includes/  -pthread -fsanitize=address
 RM = rm -rf
 
 SRC =	$(PATH_SRC)philo.c \
@@ -22,7 +22,7 @@ OBJS = $(patsubst $(PATH_SRC)%.c, $(PATH_OBJS)%.o, $(SRC))
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) -o $(NAME) $(CFLAGS) $(OBJS)  
+	$(CC) -o $(NAME) -g $(CFLAGS) $(OBJS)  
 
 $(PATH_OBJS)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJS)
@@ -30,7 +30,7 @@ $(PATH_OBJS)%.o: $(PATH_SRC)%.c
 	@mkdir -p $(PATH_OBJS)utils/
 	@mkdir -p $(PATH_OBJS)parser/
 	@mkdir -p $(PATH_OBJS)dinner/
-	$(CC) $(CFLAGS) -I. -c $< -o $@
+	$(CC) -g $(CFLAGS) -I. -c $< -o $@
 
 clean:
 	$(RM) $(PATH_OBJS)
@@ -44,7 +44,7 @@ re: fclean all
 
 add: fclean
 	git add .
-	git commit -m "tratando loop quando tem só 1 philo"
+	git commit -m "corrigindo alguns bugs"
 
 push: add
 	git push

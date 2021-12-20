@@ -6,7 +6,7 @@
 /*   By: marcus <marcus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 16:21:13 by mavinici          #+#    #+#             */
-/*   Updated: 2021/12/14 23:40:07 by marcus           ###   ########.fr       */
+/*   Updated: 2021/12/20 19:10:35 by marcus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	main(int argc, char **argv)
 	ft_bzero(&main, sizeof(t_main));
 	if (!parser_args(argv, &main))
 		return (2);
-	printf("must %i\n", main.n_to_eat);
 	if (!start_structs(&main))
 		return (3);
 	if (!prepare_dinner(&main))
