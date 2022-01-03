@@ -44,7 +44,7 @@ re: fclean all
 
 add: fclean
 	git add .
-	git commit -m "corrigindo alguns bugs"
+	git commit -m "apagando objetos"
 
 push: add
 	git push
