@@ -7,6 +7,7 @@ PATH_OBJS = ./objs/
 
 NAME = philo
 
+
 CC = gcc
 CFLAGS = -Wextra -Werror -Wall -I ./includes/  -pthread -fsanitize=address
 RM = rm -rf
@@ -44,7 +45,7 @@ re: fclean all
 
 add: fclean
 	git add .
-	git commit -m "apagando objetos"
+	git commit -m "teste"
 
 push: add
 	git push
